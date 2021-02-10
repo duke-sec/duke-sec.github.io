@@ -14,15 +14,21 @@
 
 <body>
     <!--Navigation bar-->
-    <div id="nav-here"></div>
+    <navbar id="nav-here"></navbar>
     
     <!--Begin Main-->
     <main>
         <h1>duke-sec</h1>
+        <p>
+            Technology training resources provided tree of charge.
+            Visit <a href="resources.html">resources</a> for information
+            that can answer most simple questions. 
+        </p>
     </main>
+    <!--End Main-->
 
-
-
+    <!--Footer-->
+    <footer id="footer-here"></footer>
 
 
 
@@ -38,6 +44,7 @@
     <script>
         $(function(){
             $("#nav-here").load("/templates/nav.html");
+            $("#footer-here").load("/templates/footer.html");
         });
     </script>
 </body>
