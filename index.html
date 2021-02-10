@@ -3,21 +3,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>duke-sec</title>
   <meta name="description" content="duke-sec website">
   <meta name="author" content="duke">
 
   <link rel="stylesheet" href="static/styles.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+  <title>duke-sec</title>
 </head>
 
 <body>
-    <navbar>
-        <ul>
-            <li>home</li>
-        </ul>
-    </navbar>
+    <div id="nav-here"></div>
+    <script>
+        $(function(){
+            $("#nav-here").load("nav.html");
+        });
+    </script>
 
 
 
