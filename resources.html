@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="about duke">
+  <meta name="author" content="duke">
+
+  <link rel="stylesheet" href="static/styles.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+  <title>duke-sec | resources</title>
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <navbar id="nav-here"></navbar>
+    
+    <!--Begin Main-->
+    <main>
+        <h1>duke-sec</h1>
+        <p>
+            resources
+        </p>
+    </main>
+    <!--End Main-->
+
+    <!--Footer-->
+    <footer id="footer-here"></footer>
+
+    <!--Load templates-->
+    <script>
+        $(function(){
+            $("#nav-here").load("/templates/nav.html");
+            $("#footer-here").load("/templates/footer.html");
+        });
+    </script>
+</body>
+</html>
