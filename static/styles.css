@@ -8,10 +8,11 @@ body{
 }
 nav{
     background-color: #0c0d16;
+    margin: 0 10%;
 }
 main{
     height: 80vh;
-    margin: 5% 10%;
+    margin: 0 10%;
     border-radius: 25px;
     background-color: #444;
     padding: 20px;
