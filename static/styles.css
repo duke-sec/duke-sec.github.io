@@ -15,7 +15,7 @@ body{
     float: left;
 }
 
-.navbar li > a{
+.nav-link{
     display: block;
     color: white;
     text-align: center;
@@ -23,6 +23,6 @@ body{
     text-decoration: none;
 }
 
-.navbar li > a:hover {
+.nav-link:hover {
     background-color: #111;
 }
