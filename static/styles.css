@@ -10,9 +10,11 @@ nav{
     background-color: #0c0d16;
 }
 main{
-    height: 100vh;
-    margin-left: 10%;
-    margin-right: 10%;
+    height: 80vh;
+    margin: 5% 10%;
+    border-radius: 25px;
+    background-color: #444;
+    padding: 20px;
 }
 
 .logo{
