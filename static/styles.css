@@ -16,6 +16,14 @@ main{
     background-color: #444;
     padding: 20px;
     box-shadow: 3px 3px 6px 5px black;
+    overflow-x: scroll;
+    overflow-y: auto;
+}
+footer{
+    clear: both;
+    position: relative;
+    text-align: center;
+    margin: 0 10%;
 }
 a{
     color: #a0a0a0;
@@ -26,6 +34,9 @@ h1{
 }
 h2{
     font-size: 32px;
+}
+h3{
+    font-size: 28px;
 }
 p, a{
     font-size: 24px;
