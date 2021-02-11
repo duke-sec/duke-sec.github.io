@@ -8,6 +8,9 @@ body{
     margin-left: 10%;
     margin-right: 10%;
 }
+main{
+    height: 100vh;
+}
 
 .navbar{
     list-style-type: none;
