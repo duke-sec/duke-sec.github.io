@@ -12,6 +12,10 @@ main{
     height: 100vh;
 }
 
+.logo{
+    float: left;
+}
+
 .navbar{
     list-style-type: none;
     margin: 0;
@@ -21,7 +25,7 @@ main{
 }
 
 .navbar li{
-    float: left;
+    float: right;
 }
 
 .nav-link{
