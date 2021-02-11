@@ -17,6 +17,21 @@ main{
     background-color: #444;
     padding: 20px;
 }
+a{
+    color: #a0a0a0;
+    text-decoration: none;
+}
+h1{
+    font-size: 48px;
+}
+h2{
+    font-size: 32px;
+}
+p, a{
+    font-size: 18px;
+}
+
+/*Navbar*/
 
 .logo{
     float: left;
@@ -36,12 +51,24 @@ main{
 
 .nav-link{
     display: block;
-    color: #a0a0a0;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
 }
 
 .nav-link:hover {
     background-color: #111;
+}
+
+/* Resources */
+
+#resources-main{
+    padding: 0 50px;
+}
+
+#resources-main section{
+    margin-bottom: 15px;
+}
+
+#resources-main ul{
+    margin-left: 50px;
 }
