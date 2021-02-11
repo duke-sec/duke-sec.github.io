@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="static/styles.css">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-  <title>duke-sec | resources</title>
+  <title>duke-sec | blog</title>
 </head>
 
 <body>
@@ -17,17 +17,18 @@
     <nav id="nav-here"></nav>
     
     <!--Begin Main-->
-    <main id="resources-main">
+    <main id="writeups-main">
+
         <section class="resource-heading">
-            <h1>some free resources for you</h1>
+            <h1>writeups</h1>
         </section>
 
         <div class="resource-container">
 
-            <section id="python-courses" class="resource-item">
-                <h2>python</h2>
+            <section id="tryhackme-writeups" class="resource-item">
+                <h2>tryhackme</h2>
                 <div class="resource-list">
-                    <ul id="course-list" class="idented-list">
+                    <ul id="tryhackme-list" class="idented-list">
                         <li><a href="#">item</a></li>
                         <li><a href="#">item</a></li>
                         <li><a href="#">item</a></li>
@@ -36,8 +37,8 @@
                 </div>
             </section>
 
-            <section id="linux-courses" class="resource-item">
-                <h2 class="resource-heading">linux</h2>
+            <section id="hackthebox-writeups" class="resource-item">
+                <h2>hackthebox</h2>
                 <div class="resource-list">
                     <ul id="recommended-list" class="idented-list">
                         <li><a href="#">item</a></li>
@@ -56,10 +57,11 @@
     <!--Footer-->
     <footer id="footer-here"></footer>
 
-    <!--Load templates-->
+    <!--Load Templates-->
     <script>
         $(function(){
             $("#nav-here").load("/templates/nav.html");
+            $("#blog-here").load("/templates/blogs/blog_template.html");
             $("#footer-here").load("/templates/footer.html");
         });
     </script>

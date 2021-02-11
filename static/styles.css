@@ -7,7 +7,7 @@ body{
     color: #a0a0a0;
 }
 nav{
-    background-color: #0c0d16;
+    background-color: black;
 }
 main{
     height: 80vh;
@@ -15,6 +15,7 @@ main{
     border-radius: 25px;
     background-color: #444;
     padding: 20px;
+    box-shadow: 3px 3px 6px 5px black;
 }
 a{
     color: #a0a0a0;
@@ -28,6 +29,9 @@ h2{
 }
 p, a{
     font-size: 24px;
+}
+p{
+    text-align: justify;
 }
 
 .idx-container{
@@ -50,7 +54,6 @@ p, a{
     margin: 0 10%;
     padding: 0;
     overflow: hidden;
-    background-color: #0c0d16;
 }
 
 .nav-item{
@@ -69,20 +72,20 @@ p, a{
 
 /* Resources */
 
-#resources-main section{
+section{
     margin-bottom: 15px;
 }
 
-#resources-main ul{
+.idented-list{
     margin-left: 20px;
 }
 
 #wt-list, #course-list, #recommended-list{
 }
 
-.resource-container{
+/* .resource-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -97,4 +100,4 @@ p, a{
 
 .resource-list{
     margin-left: 6em;
-}
+} */
