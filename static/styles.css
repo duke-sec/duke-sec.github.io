@@ -5,11 +5,14 @@
 body{
     background-color: #333;
     color: #a0a0a0;
-    margin-left: 10%;
-    margin-right: 10%;
+}
+nav{
+    background-color: #0c0d16;
 }
 main{
     height: 100vh;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .logo{
