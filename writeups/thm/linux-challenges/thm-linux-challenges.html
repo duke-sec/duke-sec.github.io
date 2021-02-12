@@ -48,127 +48,244 @@
             <section id="t2">
                 <h3>Task 2: The Basics</h3>
                 <p>flag1?</p>
-                <p>answer: </p>
+                <p>answer: cat the flag1.txt file</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\task2.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag2?</p>
-                <p>answer: </p>
+                <p>answer: use credentials from flag1 to switch user to bob</p>
+                <p>change into bob's home directory and list out the files</p>
+                <p>cat the flag2.txt file</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag2.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag3?</p>
-                <p>answer: </p>
+                <p>answer: a user's bash history is stored in a hidden file .bash_history</p>
+                <p>to see hidden files use ls with the -a option</p>
+                <p>cat .bash_history to see flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag3.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag4?</p>
-                <p>answer: </p>
+                <p>answer: crontab -e is a command that will allow us to create/edit cron jobs</p>
+                <p>at the bottom you wil find a cron job for flag4</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag4.1.PNG" height="100px" width="100px">
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag4.2.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag5?</p>
-                <p>answer: </p>
+                <p>answer: use locate command to find flag5 then simply cat flag5</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag5.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag6?</p>
-                <p>answer: </p>
+                <p>answer: use locate command to find flag6</p>
+                <p>cat the file and use grep to just cat flag6 to screen</p>
+                <p>egrep is equivalent to grep -e and allows us to search using regular expressions</p>
+                <p>the -o option will only show the part of file that matches our regex pattern</p>
+                <p>'c9\w*\s is searching for pattern that starts with 'c9' then has 0 or more alphanumerical symbols and ends with white space</p>
+                <p>you can simply use grep c9 and find the flag by looking through the output, but you should get used to working with regex</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag6.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag7?</p>
-                <p>answer: </p>
+                <p>answer: ps aux will list all running processes for all users</p>
+                <p>you can look through the output of ps aux to find flag or you can utilize grep to make your search easier</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag7.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag8?</p>
-                <p>answer: </p>
+                <p>answer: to decompress a .tar.gz file we can use tar -xvzf [filename]</p>
+                <p>once flag8 is decompresses we can cat file</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag8.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag9?</p>
-                <p>answer: </p>
+                <p>answer: the hosts file is located in /etc/hosts</p>
+                <p>cat this file to see flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag9.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag10?</p>
-                <p>answer: </p>
+                <p>answer: to view all users on the system we can just cat /etc/passwd</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag10.PNG" height="100px" width="100px">
                 <br>
             </section>
             
             <section id="t3">
                 <h3>Task 3: Linux Functionality</h3>
                 <p>flag11?</p>
-                <p>answer: </p>
+                <p>answer: running flag11 tells us we need to look where aliases are created</p>
+                <p>aliases are created in hidden file .bashrc</p>
+                <p>simply cat this file and look through it for flag or utilize grep to make search easier</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag11.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag12?</p>
-                <p>answer: </p>
+                <p>answer: on Ubunto OS, MOTD (message of the day) is now stored at /etc/update-motd.d</p>
+                <p>if you cat the header you will find flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag12.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag13?</p>
-                <p>answer: </p>
+                <p>answer: we can see there is a flag13 directory... in this directory are two scripts</p>
+                <p>to see the differences between these scripts we can use the diff command</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag13.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag14?</p>
-                <p>answer: </p>
+                <p>answer: logs are typically stored at /var/log</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag14.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag15?</p>
-                <p>answer: </p>
+                <p>answer: we can find information about the system at /etc/lsb-release</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag15.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag16?</p>
-                <p>answer: </p>
+                <p>answer: the /media folder contains subdirectories from removeable media mounted to system</p>
+                <p>if we check here, we can see a pattern emerge when going through subdirectories until we eventually get to the flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag16.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag17?</p>
-                <p>answer: </p>
+                <p>answer: switch user to alice and check out her home directory for flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag17.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag18?</p>
-                <p>answer: </p>
+                <p>answer: see hidden files using ls -a</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag18.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag19?</p>
-                <p>answer: </p>
+                <p>answer: we can use sed to print specific line numbers of files</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag19.PNG" height="100px" width="100px">
                 <br>
             </section>
             
             <section id="t4">
                 <h3>Task 4: Data Representation, Strings and Permissions</h3>
                 <p>flag20?</p>
-                <p>answer: </p>
+                <p>answer: use locate to find flag</p>
+                <p>when you cat flag you may notice that the data is base64 encoded</p>
+                <p>to decode the flag we can use base64 -d flag20</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag20.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag21?</p>
-                <p>answer: </p>
+                <p>answer: i have to inspect files i like to use a text editor like vim. there are many options to choose from.</p>
+                <p>upon inspection, you will see flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag21.1.PNG" height="100px" width="100px">
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag21.2.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag22?</p>
-                <p>answer: </p>
+                <p>answer: you will notice that flag22 is represented by hex code</p>
+                <p>we can revert this hex code back to plaintext using xxd with -r and -p option</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag22.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag23?</p>
-                <p>answer: </p>
+                <p>answer: we can pipe cat output to rev command to reverse the output</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag23.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag24?</p>
-                <p>answer: </p>
+                <p>answer: the strings command will list all human readable strings found in machine code</p>
+                <p>you can list all strings and search for flag or use grep to do the searching for you</p>
+                <p>the -i option for grep will ignore case so it will find matches for FLAG, fLAg, etc</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag24.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag25?</p>
-                <p>answer: </p>
+                <p>answer: doesnt exist for some reason</p>
                 <br>
+
                 <p>flag26?</p>
-                <p>answer: </p>
+                <p>answer: there are multiple ways to do this and may take some tinkering</p>
+                <p>you can use grep to search for regex. -R is recursive, so it will search all files under each directory</p>
+                <p>^4bceb.{27} is searching for a pattern that starts with '4bceb' with 27 other characters following it</p>
+                <p>you can search the entire system for this pattern, but this will take a considerable amount of time</p>
+                <p>to improve speed, you can search for a few seconds in each system directory. if a match doesn't come up in the first few seconds there is probably no match in that directory</p>
+                <p>eventually, you will find a match in /var directory</p>
+                <p>the 2>/dev/null at the end of the command redirects all standard error to null device</p>
+                <p>this basically throws away all error messages, so you will only see matches instead of looking for your match through a bunch of error messages for "permission denied", "no match found", etc</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag26.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag27?</p>
-                <p>answer: </p>
+                <p>answer: flag27 is owned by root so only users with sudo priveleges can read this flag</p>
+                <p>to check the sudo commands a user can use we can use sudo -l</p>
+                <p>doing this for alice, we see that she can utilize the cat command on flag27</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag27.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag28?</p>
-                <p>answer: </p>
+                <p>answer: we can see all info about the system using uname -a</p>
+                <p>if we just want to see the kernel version we can use uname -r</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag28.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag29?</p>
-                <p>answer: </p>
+                <p>answer: for flag29, we can use a combo of cat, tr, rev, and cut commands to get the flag</p>
+                <p>this is a linux challenge, but i also wrote some quick python that can accomplish the same thing for fun</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag29linux.PNG" height="100px" width="100px">
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag29python.PNG" height="100px" width="100px">
                 <br>
             </section>
             
             <section id="t5">
                 <h3>Task 5: SQL, FTP, Groups and RDP</h3>
                 <p>flag30?</p>
-                <p>answer: </p>
+                <p>answer: we use curl to transfer data. using curl with the target machine's ip will get the flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag30.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag31?</p>
-                <p>answer: </p>
+                <p>answer: we can start a mysql client using mysql -u [username] -p then entering the password</p>
+                <p>once the mysql client is started we can see all databases with the 'show databases' command</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag31.PNG" height="100px" width="100px">
                 <br>
+
                 <p>bonus flag?</p>
-                <p>answer: </p>
+                <p>answer: for the bonus flag, we have to specify what database we would like to use</p>
+                <p>we do this with the use [database name]; command</p>
+                <p>now we can see the tables within our databse using the 'show tables;' command</p>
+                <p>we can now use a sql query to select all data from the table to obtain the bonus flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\bonusflag.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag32?</p>
-                <p>answer: </p>
+                <p>answer: for this flag you have to use SCP (or other FTP client) on your local machine to move the file from the target machine to your machine</p>
+                <p>to do this open terminal on local machine and use scp [targetUser]@[targetIP]:[filePath] [local location you want to store file]</p>
+                <p>once you have the mp3 file on your local machine, you can use mpg123 to listen to the mp3 which will read you the flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag32.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag33?</p>
-                <p>answer: </p>
+                <p>answer: we are going to switch user back to bob</p>
+                <p>personal $PATH's are stored in hidden file .profile</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag33.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag34?</p>
-                <p>answer: </p>
+                <p>answer: system variables are indicated with the $ prefix</p>
+                <p>echoing the flag34 sys variable will echo the flag</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag34.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag35?</p>
-                <p>answer: </p>
+                <p>answer: all groups created on the system are stored in /etc/group</p>
+                <p>we can look through this file or use grep to make our search easier</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag35.PNG" height="100px" width="100px">
                 <br>
+
                 <p>flag36?</p>
-                <p>answer: </p>
+                <p>you can look through the /etc/group file to find the hacker group and its members</p>
+                <p>you can also use the getent command to find the hacker group's members</p>
+                <img src="duke-sec.github.io\writeups\thm\linux-challenges-imgs\flag36.PNG" height="100px" width="100px">
                 <br>
             </section>
         </article>
