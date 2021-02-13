@@ -14,10 +14,41 @@ main{
     margin: 20px 10%;
     border-radius: 25px;
     background-color: #444;
-    padding: 20px;
+    padding: 15px 5px 15px 5px;
     box-shadow: 3px 3px 6px 5px black;
-    overflow-x: scroll;
+    /* overflow-x: scroll;
+    overflow-y: wrap; */
 }
+article{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 80vh;
+
+}
+section{
+    margin-bottom: 15px;
+    margin-left: 20px;
+    width: 90%;
+}
+
+img{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1000px){
+    main{
+        margin: 20px;
+    }
+    img {
+        max-width: 100%;
+    }
+    .duke{
+        font-size: 96px;
+    }
+
+}
+
 
 footer{
     clear: both;
@@ -28,6 +59,9 @@ footer{
 a{
     color: #a0a0a0;
     text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
 }
 h1{
     font-size: 48px;
@@ -79,19 +113,12 @@ p{
 
 .nav-link:hover {
     background-color: #111;
+    text-decoration: none;
 }
 
 /* Resources */
-
-section{
-    margin-bottom: 15px;
-}
-
 .idented-list{
     margin-left: 20px;
-}
-
-#wt-list, #course-list, #recommended-list{
 }
 
 /* .resource-container{
@@ -113,16 +140,24 @@ section{
     margin-left: 6em;
 } */
 
-main::-webkit-scrollbar {
+article::-webkit-scrollbar {
     width: 12px;               /* width of the entire scrollbar */
 }
 
-main::-webkit-scrollbar-track {
-background: orange;        /* color of the tracking area */
+article::-webkit-scrollbar-track {
+    background: #a0a0a0;
+    border-radius: 20px;
+    border: 2px solid rgb(56, 56, 56));
 }
 
-main::-webkit-scrollbar-thumb {
-background-color: blue;    /* color of the scroll thumb */
-border-radius: 20px;       /* roundness of the scroll thumb */
-border: 3px solid orange;  /* creates padding around scroll thumb */
+article::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: #444;    
+    border-radius: 20px;       
+    border: 2px solid black;  
 }
+
+article::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(56, 56, 56);     
+}
+
