@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="about duke">
+  <meta name="author" content="duke">
+
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+  <title>duke-sec | pickle rick writeup</title>
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <nav id="nav-here"></nav>
+    
+    <!--Begin Main-->
+    <main>
+
+
+        <article>
+            <section>
+                <h1>TryHackMe: Pickle Rick</h1>
+                <p>
+                    Jump to:
+                    <a href="#f1">flag1</a> |
+                    <a href="#f2">flag2</a> |
+                    <a href="#f3">flag3</a>
+                </p>
+                <p><a href="https://tryhackme.com/room/picklerick">link to challenge at tryhackme.com</a></p>
+            </section>
+            
+            <section>
+                <h2>Task 1:</h2>
+                <p>alright so task 1 requires us to exploit a webserver to find 3 ingredients to make rick's potion...</p>
+                <p>after we deploy our VM, the first thing we should always do is run a port scan</p>
+                <p>i did this using nmap:</p>
+                <img src="/writeups/thm/picklerick/imgs/portscan.PNG">
+                <p>from this scan we can see that port 80 and 22 are open!</p>
+                <p>port 80 tells us there is a http webserver up and running</p>
+                <p>port 22 tells us that we have the ability to ssh into our target given we have the correct credentials</p>
+                <p>knowing port 80 is up and running, we can check out the webserver in our browser</p>
+                <p>to do this go to http://[insert target IP]</p>
+                <p>once there, we will see a page that doesn't give us much info; however if we go ahead and inspect the source of the page by pressing Ctrl-U, we will find something juicy:</p>   
+                <img src="/writeups/thm/picklerick/imgs/foundusername.PNG">
+                <p>after finding this username, i went ahead and tried to ssh into our target. i knew this probably wouldnt work, but I found out that we cant use a password to ssh but instead need a public key</p>
+                <p>this let me know, i should be on the lookout for an id_rsa file</p>
+                <img src="/writeups/thm/picklerick/imgs/weneedpubkey.PNG">
+                <p>after inspecting the webpage, we find that there isn't much to expect</p>
+                <p>i tried a couple common directories like /admin, /login/, etc and found a robots.txt page which most websites have</p>
+                <img src="/writeups/thm/picklerick/imgs/robots.PNG">
+                <p>who knows what this nonsense is, but it might be important later on</p>
+                <p>so as of know we still dont have a lot to work with, so i decided to use gobuster to discover any hiden directories if they exist</p>
+                <p>you can complete this same task, using Burpsuite's intruder if you so choose...</p>
+                <img src="/writeups/thm/picklerick/imgs/gobuster.PNG">
+                <p>if you have never used gobuster before check out this <a href="https://redteamtutorials.com/2018/11/19/gobuster-cheatsheet/">cheatsheet</a></p>
+                <p>from this gobuster scan, we see that there are two interesting looking locations: login.php and portal.php</p>
+                <p>when we try to navigate to these locations, we notice that portal.php redirects us to login.php, so this is where we want to focus our efforts</p>
+                <p>on the login.php page, we are presented with a form asking for a username and a password</p>
+                <p>we found the username "R1ckRul3s" earlier, but would could the password be?</p>
+                <p>i tried that nonsense ("Wubbalubbadubdub") we found earlier as a password and it happened to work</p>
+                <p>after we log in, we are taken to portal.php page and we are denied access to all tabs on page except the command panel</p>
+                <p>if we inspect this page, we will find something interesting: </p>
+                <img src="/writeups/thm/picklerick/imgs/inspectportalpage.PNG">
+                <p>if we type "ls" into the command panel, a list of files will actually appear. this indicates we can use linux commands on this command panel</p>
+                <p>this is a command execution vulnerability btw...</p>
+                <p>in this list we see some juicy stuff like "clue.txt" and "Sup3rS3cretPickl3Ingred.txt"</p>
+                <img src="/writeups/thm/picklerick/imgs/commandpanel.PNG">
+                <p>if we navigate to the supersecret text, we see this: </p>
+                <img src="/writeups/thm/picklerick/imgs/supersecret.PNG">
+                <p>looks like we found the first ingredient!</p>
+                <br>
+                <p id="f1">What is the first ingredient Rick needs?</p>
+                <p>answer: mr. meeseek hair</p>
+                <br>
+                <p>next we will check out clue.txt</p>
+                <img src="/writeups/thm/picklerick/imgs/clue.PNG">
+                <p>this tells us to look around the file system for the other ingredients, let's see if we can do that from the command panel</p>
+                <p>if we do "ls -al" we see this: </p>
+                <img src="/writeups/thm/picklerick/imgs/lsal.PNG">
+                <p>if we do "ls /home, we see this:</p>
+                <img src="/writeups/thm/picklerick/imgs/lshome.PNG">
+                <p>if we do "ls /home/rick" we see this:</p>
+                <img src="/writeups/thm/picklerick/imgs/lshomerick.PNG">
+                <p>now this is about as far as we can go and if you havent already noticed we are unable to cat files from the command panel</p>
+                <p>so let us try to get a reverse shell that will make it easier to look for what we need</p>
+                <p>first things first set up netcat listener on your local machine: </p>
+                <img src="/writeups/thm/picklerick/imgs/nc.PNG">
+                <p>then execute a reverse shell script in the command panel</p>
+                <p>i used a php script from <a href="https://highon.coffee/blog/reverse-shell-cheat-sheet/">highon.coffee</a></p>
+                <p>you can try out other scripts as well, but i choose a php script knowing that php was already running on the webserver so it should work...</p>
+                <p>i just had to tinker the file descriptors a lil bit from 3 to 4 and tada!</p>
+                <p>the blacked out part should be you tryhackme VPN ip aka the tun0 ip when you run ifconfig command</p> 
+                <img src="/writeups/thm/picklerick/imgs/reverseshell.jpg">
+                <img src="/writeups/thm/picklerick/imgs/connected.jpg">
+                <p>we are in, so lets navigate to the 'secret ingredients' we found earlier:</p>
+                <img src="/writeups/thm/picklerick/imgs/bash1.PNG">
+                <img src="/writeups/thm/picklerick/imgs/ingred2.PNG">
+                <br>
+                <p id="f2">Whats the second ingredient Rick needs?</p>
+                <p>answer: 1 jerry tear</p>
+                <br>
+                <p>now we just have to look around to find the third and final ingredient...</p>
+                <p>i worked my way back up the directories and checked out the ubuntu directory stored with rick under home</p>
+                <p>i decided to check out the .bash_history file to see if anything interesting was there and tada! the third ingredient was logged</p>
+                <img src="/writeups/thm/picklerick/imgs/third.PNG">
+                <br>
+                <p id="f3">Whats the final ingredient Rick needs?</p>
+                <p>answer: fleeb juice</p>
+                <br>
+                <p>yay! we saved rick!</p>
+            </section>
+
+        </article>
+
+        
+            
+    </main>
+    <!--End Main-->
+
+    <!--Footer-->
+    <footer id="footer-here"></footer>
+
+    <!--Load Templates-->
+    <script>
+        $(function(){
+            $("#nav-here").load("/templates/nav.html");
+            $("#footer-here").load("/templates/footer.html");
+        });
+    </script>
+</body>
+</html>
