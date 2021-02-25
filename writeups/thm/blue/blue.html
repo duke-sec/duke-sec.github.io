@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="TryHackMe Blue Writeup">
+  <meta name="author" content="duke">
+
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+  <title>duke-sec | TryHackMe Blue</title>
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <nav id="nav-here"></nav>
+    
+    <!--Begin Main-->
+    <main>
+
+
+        <article>
+            <section>
+                <h1>TryHackMe: Blue</h1>
+                <p>
+                    Jump to:
+                    <a href="#t1">Task1</a> |
+                    <a href="#t2">Task2</a> |
+                    <a href="#t3">Task3</a> |
+                    <a href="#t4">Task4</a> |
+                    <a href="#t5">Task5</a>
+                </p>
+                <p><a href="https://tryhackme.com/room/blue">link to challenge at tryhackme.com</a></p>
+            </section>
+
+            <section>
+                <h2>My Thoughts</h2>
+                    <p>This room is a great for understanding the basics of how we can exploit Windows, get a shell, and crack some passwords!
+                        When doing this room, I did not have much experience exploiting Window's machines. I learned a lot going through the tasks and 
+                        enjoyed it at the same time! Looking forward to doing the next rooms in the series: Ice & Blaster
+                    </p>
+            </section>
+            
+            <section id="t1">
+                <h2>Task 1: Recon</h2>
+                    <p>Scan the machine to see open ports</p>
+                    <p>I am choosing to save the scan results to 'init_scan.txt' using -oN option, but you do not have to do this.</p>
+                    <img src="/writeups/thm/blue/imgs/initScan.PNG">
+                    <img src="/writeups/thm/blue/imgs/portts.PNG">
+                    <br>
+                    <p>How many ports are open with a port number under 1000?</p>
+                    <p>Answer: 3</p>
+                    <br>
+                    <p>What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)</p>
+                    <p>With a little bit of research, we find out about the EternalBlue vulnerability and we can test it with nmap scripts:</p>
+                    <img src="/writeups/thm/blue/imgs/nmapEternalBlueVulnScan.PNG">
+                    <p>Answer: MS17-010</p>
+            </section>
+
+            <section id="t2">
+                <h2>Task 2: Gain Access</h2>
+                    <p>Start Metasploit with 'msfconsole' command.</p>
+                    <p>Search for EternalBlue Exploit in Metasploit using 'search' command:</p>
+                    <img src="/writeups/thm/blue/imgs/search4EternalBlueExploitInMetaSploit.PNG">
+                    <p>Answer: exploit/windows/smb/ms17_010_eternalblue</p>
+                    <br>
+                    <p>Next we show the options for this exploit using the 'show options' command:</p>
+                    <img src="/writeups/thm/blue/imgs/useMetasploitExploitShowOptions.PNG">
+                    <p>Answer: RHOSTS is the one required option we must set</p>
+                    <br>
+                    <p>We use 'set' command to set RHOSTS and our payload:</p>
+                    <img src="/writeups/thm/blue/imgs/setOptions.PNG">
+                    <p>Note: RHOSTS is set equal to IP of our target & we could have left our payload as the meterpreter payload,
+                        but DarkStar wants us to learn how to upgrade a regular shell to a meterpreter shell... an invaluable skill!
+                    </p>
+                    <br>
+                    <p>We also must set the LHOST option equal to our tun0 IP or the IP shown on TryHackMe when you are connected to VPN:</p>
+                    <img src="/writeups/thm/blue/imgs/setLhost.PNG">
+                    <p>Now all we have to do is run the exploit by typing the 'run' or 'exploit' command:</p>
+                    <img src="/writeups/thm/blue/imgs/runExploit.PNG">
+                    <p>Background the shell to prepare for upgrading it to meterpreter shell:</p>
+                    <img src="/writeups/thm/blue/imgs/backgroundShell.PNG">
+            </section>
+            
+            <section id="t3">
+                <h2>Task 3: Escalate</h2>
+                    <p>After some research we find the module used to upgrade our shell.</p>
+                    <br>
+                    <p>Answer: post/multi/manage/shell_to_meterpreter</p>
+                    <br>
+                    <p>We use this module and show the options to see what options we must change.</p>
+                    <br>
+                    <p>Answer: SESSION</p>
+                    <br>
+                    <p>We set SESSION to our backgrounded session number which we can see with command 'sessions -l'</p>
+                    <p>Go ahead and run the module!</p>
+                    <p>If you list your sessions, you will see a new meterpreter session that we can select for use!</p>
+                    <img src="/writeups/thm/blue/imgs/upgradeShell.PNG">
+                    <p>We can go ahead and confirm which user we are with 'getuid' command:</p>
+                    <img src="/writeups/thm/blue/imgs/confirmAuth.PNG">
+                    <p>If you are not 'NT AUTHORITY\SYSTEM' user which is Window's equivalent to root, you can use 'getsystem' command to upgrade privileges!</p>
+                    <br>
+                    <p>Now we list the processes running on target:</p>
+                    <img src="/writeups/thm/blue/imgs/listProcesses.PNG">
+                    <p>If you want to know what your shell's process id is, you can run command 'getpid'</p>
+                    <p>We want to migrate our shell process to another 'NT AUTHORITY\SYSTEM' process in order to hide our shell from anyone that might be looking for us;)</p>
+                    <img src="/writeups/thm/blue/imgs/migrateProcesses.PNG">
+                    <p>Note: you might have to try a few migrations like I did before you get your shell process to migrate successfully.</p>
+            </section>
+            
+            <section id="t4">
+                <h2>Task 4: Cracking</h2>
+                    <p>Now the exciting stuff!</p>
+                    <p>Meterpreter has a command 'hashdump' which allows us to get all of the users and passwords on the machine!</p>
+                    <img src="/writeups/thm/blue/imgs/hashdump.PNG">
+                    <p>Answer: From this we can see that "Jon" is the non-default user</p>
+                    <br>
+                    <p>Now we copy this hashdump into a file on our machine:</p>
+                    <img src="/writeups/thm/blue/imgs/saveHashdump.PNG">
+                    <p>And we use John The Ripper to crack the hash:</p>
+                    <img src="/writeups/thm/blue/imgs/crackHashwithJohn.PNG">
+                    <p>Windows stores passwords using NTLM hash, so we set '--format=nt'</p>
+                    <p>We just want Jon's password hash cracked, so we set '--users=Jon'</p>
+                    <p>We want to use the 'rockyou.txt' wordlist, so we set '--wordlist=' where we have 'rockyou.txt' stored on our machine</p>
+                    <br>
+                    <p>Answer: alqfna22</p>
+            </section>
+            
+            <section id="t5">
+                <h2>Task 5: Find Flags!</h2>
+                    <p>Flag 1 can be found at the system root:</p>
+                    <img src="/writeups/thm/blue/imgs/flag1.PNG">
+                    <p>Flag 2 can be found at the locations where passwords are stored within Windows:</p>
+                    <img src="/writeups/thm/blue/imgs/flag2.PNG">
+                    <p>Flag 3 can be found in Jon's Documents folder:</p>
+                    <img src="/writeups/thm/blue/imgs/flag3.PNG">
+                    <br>
+            </section>
+        </article>
+
+    </main>
+    <!--End Main-->
+
+    <!--Footer-->
+    <footer id="footer-here"></footer>
+
+    <!--Load Templates-->
+    <script>
+        $(function(){
+            $("#nav-here").load("/templates/nav.html");
+            $("#footer-here").load("/templates/footer.html");
+        });
+    </script>
+</body>
+</html>

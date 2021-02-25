@@ -49,7 +49,6 @@ img{
 
 }
 
-
 footer{
     clear: both;
     position: relative;
@@ -120,25 +119,6 @@ p{
 .idented-list{
     margin-left: 20px;
 }
-
-/* .resource-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.resource-heading{
-    text-align: center;
-}
-
-.resource-item{
-    flex: 33%;
-    width: 300px;
-}
-
-.resource-list{
-    margin-left: 6em;
-} */
 
 article::-webkit-scrollbar {
     width: 12px;               /* width of the entire scrollbar */
