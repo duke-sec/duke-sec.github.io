@@ -23,12 +23,6 @@
         <article>
             <section>
                 <h1>TryHackMe: Pickle Rick</h1>
-                <p>
-                    Jump to:
-                    <a href="#f1">flag1</a> |
-                    <a href="#f2">flag2</a> |
-                    <a href="#f3">flag3</a>
-                </p>
                 <p><a href="https://tryhackme.com/room/picklerick">link to challenge at tryhackme.com</a></p>
             </section>
             
@@ -44,23 +38,23 @@
                 <p>knowing port 80 is up and running, we can check out the webserver in our browser</p>
                 <p>to do this go to http://[insert target IP]</p>
                 <p>once there, we will see a page that doesn't give us much info; however if we go ahead and inspect the source of the page by pressing Ctrl-U, we will find something juicy:</p>   
-                <img src="/writeups/thm/picklerick/imgs/foundusername.PNG">
+                <img src="/writeups/thm/picklerick/imgs/foundusername.jpg">
                 <p>after finding this username, i went ahead and tried to ssh into our target. i knew this probably wouldnt work, but I found out that we cant use a password to ssh but instead need a public key</p>
                 <p>this let me know, i should be on the lookout for an id_rsa file</p>
-                <img src="/writeups/thm/picklerick/imgs/weneedpubkey.PNG">
+                <img src="/writeups/thm/picklerick/imgs/weneedpubkey.jpg">
                 <p>after inspecting the webpage, we find that there isn't much to expect</p>
                 <p>i tried a couple common directories like /admin, /login/, etc and found a robots.txt page which most websites have</p>
-                <img src="/writeups/thm/picklerick/imgs/robots.PNG">
+                <img src="/writeups/thm/picklerick/imgs/robots.jpg">
                 <p>who knows what this nonsense is, but it might be important later on</p>
-                <p>so as of know we still dont have a lot to work with, so i decided to use gobuster to discover any hiden directories if they exist</p>
+                <p>so as of know we still dont have a lot to work with, so i decided to use gobuster to discover any hidden directories if they exist</p>
                 <p>you can complete this same task, using Burpsuite's intruder if you so choose...</p>
                 <img src="/writeups/thm/picklerick/imgs/gobuster.PNG">
                 <p>if you have never used gobuster before check out this <a href="https://redteamtutorials.com/2018/11/19/gobuster-cheatsheet/">cheatsheet</a></p>
                 <p>from this gobuster scan, we see that there are two interesting looking locations: login.php and portal.php</p>
                 <p>when we try to navigate to these locations, we notice that portal.php redirects us to login.php, so this is where we want to focus our efforts</p>
                 <p>on the login.php page, we are presented with a form asking for a username and a password</p>
-                <p>we found the username "R1ckRul3s" earlier, but would could the password be?</p>
-                <p>i tried that nonsense ("Wubbalubbadubdub") we found earlier as a password and it happened to work</p>
+                <p>we found that username earlier, but would could the password be?</p>
+                <p>i tried the nonsense we found on 'robots.txt'earlier as a password and it happened to work</p>
                 <p>after we log in, we are taken to portal.php page and we are denied access to all tabs on page except the command panel</p>
                 <p>if we inspect this page, we will find something interesting: </p>
                 <img src="/writeups/thm/picklerick/imgs/inspectportalpage.PNG">
@@ -69,11 +63,8 @@
                 <p>in this list we see some juicy stuff like "clue.txt" and "Sup3rS3cretPickl3Ingred.txt"</p>
                 <img src="/writeups/thm/picklerick/imgs/commandpanel.PNG">
                 <p>if we navigate to the supersecret text, we see this: </p>
-                <img src="/writeups/thm/picklerick/imgs/supersecret.PNG">
+                <img src="/writeups/thm/picklerick/imgs/supersecret.jpg">
                 <p>looks like we found the first ingredient!</p>
-                <br>
-                <p id="f1">What is the first ingredient Rick needs?</p>
-                <p>answer: mr. meeseek hair</p>
                 <br>
                 <p>next we will check out clue.txt</p>
                 <img src="/writeups/thm/picklerick/imgs/clue.PNG">
@@ -97,18 +88,12 @@
                 <img src="/writeups/thm/picklerick/imgs/connected.jpg">
                 <p>we are in, so lets navigate to the 'secret ingredients' we found earlier:</p>
                 <img src="/writeups/thm/picklerick/imgs/bash1.PNG">
-                <img src="/writeups/thm/picklerick/imgs/ingred2.PNG">
-                <br>
-                <p id="f2">Whats the second ingredient Rick needs?</p>
-                <p>answer: 1 jerry tear</p>
+                <img src="/writeups/thm/picklerick/imgs/ingred2.jpg">
                 <br>
                 <p>now we just have to look around to find the third and final ingredient...</p>
                 <p>i worked my way back up the directories and checked out the ubuntu directory stored with rick under home</p>
                 <p>i decided to check out the .bash_history file to see if anything interesting was there and tada! the third ingredient was logged</p>
-                <img src="/writeups/thm/picklerick/imgs/third.PNG">
-                <br>
-                <p id="f3">Whats the final ingredient Rick needs?</p>
-                <p>answer: fleeb juice</p>
+                <img src="/writeups/thm/picklerick/imgs/third.jpg">
                 <br>
                 <p>yay! we saved rick!</p>
             </section>
